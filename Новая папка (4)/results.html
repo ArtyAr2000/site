@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results</title>
+</head>
+<body>
+  <h2>Ваши данные:</h2>
+  <p>Пол: <span id="gender"></span></p>
+  <p>Страна: <span id="country"></span></p>
+  <p>Сообщение: <span id="message"></span></p>
+  <p>Подписка на рассылку: <span id="subscribe"></span></p>
+  <p>Email: <span id="email"></span></p>
+  <p>Имя пользователя: <span id="username"></span></p>
+
+  <script>
+    // Получаем параметры из URL
+    var params = new URLSearchParams(window.location.search);
+    // Выводим данные на страницу
+    document.getElementById('gender').textContent = params.get('gender');
+    document.getElementById('country').textContent = params.get('country');
+    document.getElementById('message').textContent = params.get('message');
+    document.getElementById('subscribe').textContent = params.get('subscribe');
+    document.getElementById('email').textContent = params.get('email');
+    document.getElementById('username').textContent = params.get('username');
+  </script>
+</body>
+</html>

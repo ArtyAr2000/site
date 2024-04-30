@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    textarea.no-resize {
+      resize: none;
+    }
+    /* Добавляем стили для контейнера формы */
+    .form-container {
+      width: 200px;
+      margin-bottom: 20px; /* Добавляем отступ снизу */
+      border: 1px solid #ccc; /* Добавляем рамку */
+      padding: 10px; /* Добавляем внутренний отступ */
+    }
+
+    /* Добавляем стили для выпадающего списка */
+    select {
+      padding: 5px; /* Добавляем внутренний отступ */
+      margin-bottom: 10px; /* Добавляем отступ снизу */
+    }
+
+    /* Добавляем стили для текстовой области */
+    textarea {
+      padding: 5px; /* Добавляем внутренний отступ */
+      margin-bottom: 10px; /* Добавляем отступ снизу */
+    }
+  </style>
+
+  <script>
+    // Функция для обработки отправки формы
+    function submitForm() {
+      // Получаем значения из полей формы
+      var gender = document.querySelector('input[name="gender"]:checked').value;
+      var country = document.getElementById('country').value;
+      var message = document.getElementById('message').value;
+      var subscribe = document.getElementById('subscribe').checked ? 'Да' : 'Нет';
+      var email = document.getElementById('email').value;
+      var username = document.getElementById('username').value;
+
+      // Формируем URL для перенаправления с данными
+      var url = 'results.html?' +
+                'gender=' + encodeURIComponent(gender) +
+                '&country=' + encodeURIComponent(country) +
+                '&message=' + encodeURIComponent(message) +
+                '&subscribe=' + encodeURIComponent(subscribe) +
+                '&email=' + encodeURIComponent(email) +
+                '&username=' + encodeURIComponent(username);
+
+      // Перенаправляем пользователя на новую страницу с данными
+      window.location.href = url;
+
+      // Предотвращаем стандартное действие отправки формы
+      return false;
+    }
+  </script>
+</head>
+<body>
+  <h2>Выберите ваш пол:</h2>
+
+  <!-- Первый переключатель -->
+  <input type="radio" id="male" name="gender" value="male">
+  <label for="male">Мужской</label><br>
+
+  <!-- Второй переключатель -->
+  <input type="radio" id="female" name="gender" value="female">
+  <label for="female">Женский</label><br>
+
+  <!-- Третий переключатель -->
+  <input type="radio" id="other" name="gender" value="other">
+  <label for="other">Другой</label><br>
+
+  <br>
+
+  <!-- Добавляем контейнер для формы -->
+  <div class="form-container">
+    <!-- Добавляем строку "Выберите вашу страну" над выпадающим списком -->
+    <p>Выберите вашу страну:</p>
+    <!-- Добавляем рамку вокруг выпадающего списка -->
+    <select id="country" name="country">
+      <option value="" selected disabled>Выберите вашу страну</option>
+      <option value="usa">США</option>
+      <option value="uk">Великобритания</option>
+      <option value="france">Франция</option>
+    </select>
+    <br>    
+    <textarea
+      id="message"
+      name="message"
+      class="no-resize"
+      placeholder="Введите ваше сообщение"
+    ></textarea>
+    <br />
+
+    <input type="checkbox" id="subscribe" name="subscribe" value="yes" />
+    <label for="subscribe">Подписаться на рассылку</label>
+
+    <br />
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="example@example.com"
+    />
+
+    <br />
+    <label for="username">Имя пользователя:</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Введите ваше имя"
+    />
+
+    <br />
+    <form action="results.html" method="get" onsubmit="return submitForm()">
+      <!-- Поля ввода будут здесь -->
+      <input type="submit" value="Отправить" />
+    </form>
+
+    <br />
+  </body>
+</html>
